@@ -1,9 +1,8 @@
 "use client"
 
-import { Box } from "@chakra-ui/react"
+import { Box, useMultiStyleConfig } from "@chakra-ui/react"
 import { AutocompleteItem } from "./AutocompleteItem"
 import type { AutocompleteListProps } from "./Autocomplete.types"
-import { styles } from "./Autocomplete.styles"
 
 export const AutocompleteList = ({
   filteredOptions,
@@ -12,18 +11,21 @@ export const AutocompleteList = ({
   highlightedIndex,
   ...props
 }: AutocompleteListProps) => {
+  const styles = useMultiStyleConfig("Autocomplete", props);
+
   if (!isOpen || filteredOptions.length === 0) {
     return null
   }
 
   return (
-    <Box sx={styles.list} role="listbox" {...props}>
+    <Box __css={styles.list} role="listbox" {...props}>
       {filteredOptions.map((option, index) => (
         <AutocompleteItem
           key={option.value}
           option={option}
           isHighlighted={index === highlightedIndex}
           onSelect={() => onSelect(option)}
+          __css={styles.item}
         />
       ))}
     </Box>

@@ -2,9 +2,11 @@
 
 import type React from "react"
 
-import { Box, Input } from "@chakra-ui/react"
+import { Box, Input, useMultiStyleConfig } from "@chakra-ui/react"
 import { useState, useRef, useEffect } from "react"
 import type { AutocompleteOption, AutocompleteProps } from "./Autocomplete.types"
+import { AutocompleteList } from "./AutocompleteList"
+import { AutocompleteInput } from "./AutocompleteInput"
 
 export const Autocomplete = ({
   options,
@@ -20,6 +22,8 @@ export const Autocomplete = ({
   const [isOpen, setIsOpen] = useState(false)
   const [highlightedIndex, setHighlightedIndex] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
+
+  const styles = useMultiStyleConfig("Autocomplete", props);
 
   // Sync with external value if provided
   useEffect(() => {
@@ -94,8 +98,8 @@ export const Autocomplete = ({
   }, [])
 
   return (
-    <Box ref={containerRef} position="relative" width="100%" {...props}>
-      <Input
+    <Box ref={containerRef} __css={styles.container} {...props}>
+      <AutocompleteInput
         value={value}
         onChange={handleInputChange}
         onFocus={() => setIsOpen(true)}
@@ -104,36 +108,11 @@ export const Autocomplete = ({
         isDisabled={isDisabled}
         variant={variant}
         size={size}
+        __css={styles.input}
       />
 
       {isOpen && filteredOptions.length > 0 && (
-        <Box
-          position="absolute"
-          width="100%"
-          zIndex={10}
-          mt="2px"
-          bg="white"
-          borderRadius="md"
-          boxShadow="lg"
-          py={2}
-          role="listbox"
-        >
-          {filteredOptions.map((option, index) => (
-            <Box
-              key={option.value}
-              px={4}
-              py={2}
-              cursor="pointer"
-              bg={index === highlightedIndex ? "blue.50" : "transparent"}
-              _hover={{ bg: "gray.50" }}
-              onClick={() => handleSelect(option)}
-              role="option"
-              aria-selected={index === highlightedIndex}
-            >
-              {option.label}
-            </Box>
-          ))}
-        </Box>
+        <AutocompleteList filteredOptions={filteredOptions} isOpen={isOpen} onSelect={handleSelect} highlightedIndex={highlightedIndex} />
       )}
     </Box>
   )

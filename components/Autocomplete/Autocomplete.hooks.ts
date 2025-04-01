@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import type { AutocompleteOption } from "@/components/Autocomplete/Autocomplete.types"
+import type { AutocompleteOption } from "./Autocomplete.types"
 
 export const useAutocomplete = (options: AutocompleteOption[]) => {
   const [value, setValue] = useState("")

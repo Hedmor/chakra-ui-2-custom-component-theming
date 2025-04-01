@@ -6,7 +6,7 @@ export interface AutocompleteOption {
   label: string
 }
 
-export interface AutocompleteProps extends BoxProps {
+export interface AutocompleteProps extends Omit<BoxProps, 'children' | 'onChange'> {
   options: AutocompleteOption[]
   value?: string
   onChange?: (value: string) => void
@@ -16,7 +16,7 @@ export interface AutocompleteProps extends BoxProps {
   size?: string
 }
 
-export interface AutocompleteInputProps {
+export interface AutocompleteInputProps extends Omit<BoxProps, 'children' | 'onChange'> {
   value: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onFocus: () => void
@@ -34,7 +34,7 @@ export interface AutocompleteListProps {
   highlightedIndex: number
 }
 
-export interface AutocompleteItemProps {
+export interface AutocompleteItemProps extends Omit<BoxProps, 'children' | 'onChange'> {
   option: AutocompleteOption
   isHighlighted: boolean
   onSelect: () => void

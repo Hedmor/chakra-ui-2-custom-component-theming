@@ -8,7 +8,6 @@ export const AutocompleteItem = ({ option, isHighlighted, onSelect, ...props }: 
   return (
     <Box
       sx={{
-        ...styles.item,
         ...(isHighlighted ? styles.highlightedItem : {}),
       }}
       onClick={onSelect}

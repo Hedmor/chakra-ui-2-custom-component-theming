@@ -36,9 +36,6 @@ export default function ClientPage() {
           <Heading as="h1" size="xl">
             Chakra UI Autocomplete
           </Heading>
-          <Button onClick={toggleColorMode} size="md">
-            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-          </Button>
         </Flex>
 
         <Text mb={6}>A modern autocomplete component built with Chakra UI v2 and Next.js 15</Text>

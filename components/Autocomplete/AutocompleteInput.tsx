@@ -2,7 +2,6 @@
 
 import { Input } from "@chakra-ui/react"
 import type { AutocompleteInputProps } from "./Autocomplete.types"
-import { styles } from "./Autocomplete.styles"
 
 export const AutocompleteInput = ({
   value,
@@ -25,7 +24,6 @@ export const AutocompleteInput = ({
       isDisabled={isDisabled}
       variant={variant}
       size={size}
-      sx={styles.input}
       {...props}
     />
   )

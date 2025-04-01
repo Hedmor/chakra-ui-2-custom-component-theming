@@ -1,3 +1,4 @@
+import { Autocomplete } from "@/components/Autocomplete/Autocomplete.theme"
 import { extendTheme } from "@chakra-ui/react"
 import type { ChakraTheme } from "@chakra-ui/react"
 
@@ -12,7 +13,6 @@ export const theme = extendTheme({
     },
   },
   components: {
-    // We'll use standard Chakra components and style them directly
+    Autocomplete,
   },
 } as Partial<ChakraTheme>)
-
